@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View your background-removed image and download it easily.">
+    <meta name="author" content="Venkatadri">
+    <title>BG REMOVER</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{% static 'images/image1.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .upload-form input[type="file"] {
+            border: 2px solid #007bff; /* Thicker border */
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background: #fff; /* White background for the input */
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .upload-form button {
+            background: #007bff;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .upload-form button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style='color: green;'>Please Upload a Image</h1>
+        <div class="upload-form">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="image" required>
+                <button type="submit">Upload Image</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

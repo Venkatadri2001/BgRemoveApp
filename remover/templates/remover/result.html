@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="View your background-removed image and download it easily.">
+    <meta name="author" content="Venkatadri">
+    <title>Result</title>
+    {% load static %}
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url("{% static 'images/image.jpg' %}") no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .result-container {
+            margin-bottom: 20px;
+        }
+
+        .result-image {
+            width: 200px;
+            height: auto;
+            border: 1px solid #000;
+            border-radius: 4px;
+        }
+
+        .download-button {
+            background: #28a745;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+            text-decoration: none; /* Remove underline */
+        }
+
+        .download-button:hover {
+            background: #218838;
+        }
+        .upload-new-button,.add-background-button {
+            background: #007bff;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto;
+            text-decoration: none; /* Remove underline */
+        }
+
+        .upload-new-button:hover,.add-background-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: red;">Background Removed Image</h1>
+        <div class="result-container">
+            <img src="{{ image_upload.result.url }}" alt="Result Image" class="result-image">
+            <a href="{{ image_upload.result.url }}" download class="download-button">
+                Download
+            </a>
+            <a href="{% url 'upload' %}" class="upload-new-button">
+                Upload New Image
+            </a>
+            <a href="{% url 'add_background' image_upload.pk %}" class="add-background-button">
+                Add Background
+            </a>
+        </div>
+    </div>
+</body>
+</html>
